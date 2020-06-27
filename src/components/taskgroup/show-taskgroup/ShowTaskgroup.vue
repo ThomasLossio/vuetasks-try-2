@@ -11,9 +11,7 @@
     <label for="description">Description: {{ taskgroup.description }}</label>
     <br />
 
-    <label for="frequence_type"
-      >Frequence Type: {{ taskgroup.frequence_type }}</label
-    >
+    <label for="frequence_type">Frequence Type: {{ taskgroup.frequence_type }}</label>
     <br />
     <br />
     <button @click="back()">Back</button>
@@ -35,15 +33,16 @@ export default {
     "list-taskitem": ListTaskitem
   },
   computed: {
-    ...mapState('taskGroup', ['taskgroup'])
+    ...mapState("taskGroup", ["taskgroup"])
   },
   mounted: function() {
     this.setTaskgroup(this.id).then(response => {
-      console.log(response);
+      this.setTaskitems(response.task_in_lists);
     });
   },
   methods: {
-    ...mapActions('taskGroup', ['setTaskgroup']),
+    ...mapActions("taskGroup", ["setTaskgroup"]),
+    ...mapActions("taskItem", ["setTaskitems"]),
     back() {
       this.$router.back();
     },

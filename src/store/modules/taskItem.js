@@ -26,9 +26,16 @@ const taskItem = {
       const index = state.taskItems.indexOf(stateTaskitem);
 
       state.taskItems.splice(index);
+    },
+    updateTaskItems(state, taskItems) {
+      state.taskItems = taskItems
     }
   },
-  actions: {},
+  actions: {
+    setTaskitems({ commit }, taskItems) {
+      commit('updateTaskItems', taskItems)
+    }
+  },
 };
 
 export default taskItem;
